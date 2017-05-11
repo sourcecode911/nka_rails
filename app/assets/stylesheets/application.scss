@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+body {
+  height: calc(100vh - 50px);
+  width: 100vw;
+  margin: 0;
+  overflow: hidden;
+}
+
+main {
+  margin-top: 50px;
+}

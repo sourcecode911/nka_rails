@@ -1,0 +1,12 @@
+---
+applications:
+- name: nka_rails
+  host: nka_rails
+  instances: 1
+  services:
+    - nka_test
+  env:
+    RAILS_ENV: production
+  buildpack: ruby_buildpack
+
+...
