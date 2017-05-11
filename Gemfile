@@ -56,10 +56,14 @@ group :development, :test do
   gem 'faker'
   # Rspec testing framework
   gem 'rspec-rails'
+
+  gem 'rspec'
   # Generates test data for models
   gem 'factory_girl_rails'
   # Additional Rspec matchers
   gem 'shoulda-matchers'
+  # Cleans the database before each test
+  gem 'database_cleaner'
 
   # Automatically runs tests on file change
   gem 'guard'
