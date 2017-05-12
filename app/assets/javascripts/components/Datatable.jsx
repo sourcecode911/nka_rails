@@ -3,13 +3,10 @@ class Datatable extends React.Component {
         return (<div className="table-responsive">
             <table className="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Gesamt</th>
-                    <th>Jahr</th>
-                </tr>
+                    {this.props.renderHeader()}
                 </thead>
                 <tbody>
+                    {this.props.children}
                 </tbody>
             </table>
         </div>);

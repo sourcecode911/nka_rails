@@ -2,6 +2,7 @@
 
 <hr />
 
-<%= react_component('Datatable', {name: 'Cedric'}) %>
+<%= react_component('Invoices', {items: @invoices}) %>
+<%= react_component('NewInvoice',  {years: (2000...(Date.today.year + 2)).to_a.reverse}) %>
 
 

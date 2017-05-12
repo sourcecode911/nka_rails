@@ -40,6 +40,8 @@ gem 'bootstrap-sass'
 # Default Translations for some errors and stuff
 gem 'rails-i18n'
 
+gem 'jquery-rails'
+
 # React components in views
 gem 'react-rails', '~> 2.1'
 

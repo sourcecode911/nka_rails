@@ -8,4 +8,5 @@ RSpec.describe Invoice, type: :model do
   it { should validate_presence_of(:user_id ) }
   it { should validate_presence_of(:year ) }
   it { should validate_presence_of(:state ) }
+  it { should validate_uniqueness_of(:year).scoped_to(:user_id) }
 end

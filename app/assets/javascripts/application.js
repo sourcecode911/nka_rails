@@ -10,9 +10,23 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
+
+function httpGet(url, callback) {
+    $.getJSON(url, function(resp) { callback(resp) });
+}
+
+function httpPost(url, data) {
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function(resp) { console.log(resp) }
+    })
+}
