@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511173124) do
+ActiveRecord::Schema.define(version: 20170515104629) do
 
   create_table "counts", force: :cascade do |t|
     t.integer "meter_id", null: false
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20170511173124) do
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "erdgas"
+    t.decimal "kamin"
+    t.decimal "wartung"
+    t.decimal "reinigung"
+    t.decimal "strom"
+    t.decimal "gesamt_strom"
+    t.decimal "wasser"
+    t.decimal "abwasser"
+    t.decimal "niederschlag"
+    t.decimal "abfall"
+    t.decimal "grundsteuer"
+    t.decimal "versicherung"
   end
 
   create_table "meters", force: :cascade do |t|

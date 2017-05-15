@@ -28,7 +28,38 @@ body {
 
 main {
   margin-top: 50px;
+  height: calc(100vh - 50px);
   padding: 15px;
+  overflow-x: hidden;
+}
+
+.strompreis {
+  height: 35px;
+
+  .input-group {
+    float: left;
+    margin-right: 15px;
+  }
+}
+
+//.input-group {
+//  float: left !important;
+//  padding-left: 15px !important;
+//  padding-right: 15px !important;
+//}
+
+.abschlag-input {
+  .input-group-addon { border-left: none; }
+  button { padding-bottom: 7px; }
+}
+
+.add-resident-row {
+  border-top: none;
+  text-align: right;
+}
+
+.input-group-addon {
+  width: 55px;
 }
 
 select {
