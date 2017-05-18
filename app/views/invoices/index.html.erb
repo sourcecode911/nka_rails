@@ -1,8 +1,21 @@
 <h3>Abrechnungen</h3>
 
+<% if notice %>
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
 <hr />
 
 <%= react_component('Invoices', {items: @invoices}) %>
-<%= react_component('NewInvoice',  {years: (2000...(Date.today.year + 2)).to_a.reverse}) %>
+<%#= react_component('NewInvoice',  {years: (2000...(Date.today.year + 2)).to_a.reverse}) %>
+
+<%= form_for Invoice.new, class: 'form-inline' do |f| %>
+  <div class="form-group">
+    <%= f.label :year, 'Jahr' %>
+    <%= f.select :year, (2000...(Date.today.year + 2)).to_a.reverse, class: 'form-control' %>
+  </div>
+
+    <%= f.submit 'Erstellen', class: 'btn btn-primary' %>
+<% end %>
 
 

@@ -19,14 +19,23 @@
 //= require_tree .
 
 function httpGet(url, callback) {
-    $.getJSON(url, function(resp) { callback(resp) });
+    $.getJSON(url, function(resp) {
+        if(callback) {
+            callback(resp);
+        }
+    });
 }
 
-function httpPost(url, data) {
+function httpPost(url, data, callback) {
     $.ajax({
         url: url,
         type: 'POST',
         data: data,
-        success: function(resp) { console.log(resp) }
+        success: function(resp) {
+            if(callback) {
+                console.log('success')
+                callback(resp);
+            }
+        }
     })
 }

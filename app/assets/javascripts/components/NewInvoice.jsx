@@ -12,7 +12,13 @@ class NewInvoice extends React.Component {
 
     createInvoice() {
         let invoice = {year: document.getElementById('yearInput').value};
-        httpPost('/invoices', {invoice: invoice});
+        httpPost('/invoices', {invoice: invoice}, this.refreshInvoices.bind(this));
+    }
+
+    refreshInvoices(resp) {
+        httpGet('/invoices', function(resp) {
+
+        });
     }
 
     render() {

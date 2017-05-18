@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :residents
 
+  get 'expenses', to: 'invoices#edit'
+
   resources :invoices
   # resources :invoice_details
 

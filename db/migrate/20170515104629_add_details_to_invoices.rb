@@ -4,7 +4,8 @@ class AddDetailsToInvoices < ActiveRecord::Migration[5.1]
     add_column :invoices, :kamin, :decimal
     add_column :invoices, :wartung, :decimal
     add_column :invoices, :reinigung, :decimal
-    add_column :invoices, :strom, :decimal
+    add_column :invoices, :strompreis, :decimal
+    add_column :invoices, :stromverbrauch, :decimal
     add_column :invoices, :gesamt_strom, :decimal
     add_column :invoices, :wasser, :decimal
     add_column :invoices, :abwasser, :decimal

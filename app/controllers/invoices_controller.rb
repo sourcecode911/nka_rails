@@ -1,6 +1,11 @@
 class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all
+
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: @invoices }
+    end
   end
 
   def create
@@ -8,11 +13,31 @@ class InvoicesController < ApplicationController
     @invoice.user_id = 1
     @invoice.save
 
-    render json: @invoice.id
+    respond_to do |format|
+      format.html { redirect_to invoices_path, notice: "Abrechnung für das Jahr #{@invoice.year} wurde erstellt." }
+      format.json { render json: @invoice.id }
+    end
   end
+
+  def edit
+    @invoice = Invoice.find(params[:id])
+  end
+
+  def update
+    @invoice = Invoice.find(params[:id])
+
+    if @invoice.update(invoice_params)
+      redirect_to edit_invoice_path(params[:id]), notice: 'Die Abrechnung wurde gespeichert.'
+    else
+      render 'edit'
+    end
+
+  end
+
 
   private
     def invoice_params
-      params.require(:invoice).permit(:year)
+      params.require(:invoice).permit(:year, :erdgas, :wartung, :kamin, :reinigung, :strompreis, :stromverbrauch, :gesamt_strom,
+                                      :wasser, :abwasser, :niederschlag, :abfall, :grundsteuer, :versichung)
     end
 end

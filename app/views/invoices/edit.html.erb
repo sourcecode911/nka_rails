@@ -1,119 +1,116 @@
 <h3>Betriebskosten</h3>
+<% if notice %>
+  <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
 
-<hr />
-<form>
-
-  <div class="form-group">
-    <label for="erdgaskosten" class="col-sm-2 control-label">Erdgaskosten</label>
-    <div class="input-group col-sm-4">
-      <input id="erdgaskosten" type="text" class="form-control">
-      <span class="input-group-addon">€</span>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="kaminfeger" class="col-sm-2 control-label">Kaminfeger</label>
-    <div class="input-group col-sm-4">
-      <input id="kaminfeger" type="text" class="form-control">
-      <span class="input-group-addon">€</span>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="wartungskosten" class="col-sm-2 control-label">Wartungskosten</label>
-    <div class="input-group col-sm-4">
-      <input id="wartungskosten" type="text" class="form-control">
-      <span class="input-group-addon">€</span>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="reinigungskosten" class="col-sm-2 control-label">Reinigungskosten</label>
-    <div class="input-group col-sm-4">
-      <input id="reinigungskosten" type="text" class="form-control">
-      <span class="input-group-addon">€</span>
-    </div>
-  </div>
-
-  <hr />
-
-  <div class="form-group strompreis">
-    <label for="strom" class="col-sm-2 control-label">Strompreis</label>
-    <div class="input-group col-sm-3">
-      <input id="strom" type="text" class="form-control" placeholder="Gesamtpreis">
-      <span class="input-group-addon">€</span>
-    </div>
-    <div class="input-group col-sm-3">
-      <input id="strom" type="text" class="form-control" placeholder="Gesamtverbrauch">
-      <span class="input-group-addon">€</span>
-    </div>
-    <!--<div class="input-group col-sm-2">-->
-    <!--<input id="strom" type="text" class="form-control" placeholder="Stromsteuer">-->
-    <!--<span class="input-group-addon">€</span>-->
-    <!--</div>-->
-    <!--<div class="input-group col-sm-2">-->
-    <!--<input id="strom" type="text" class="form-control" placeholder="Umsatzsteuer">-->
-    <!--<span class="input-group-addon">€</span>-->
-    <!--</div>-->
-  </div>
-
-  <div class="form-group">
-    <label for="strom-brutto" class="control-label col-sm-2">Strompreis (brutto)</label>
-    <div class="input-group col-sm-6">
-      <input id="strom-brutto" type="text" class="form-control" readonly placeholder="Gesamtpreis / Gesamtverbrauch ">
-      <span class="input-group-addon">€</span>
-    </div>
-
-    <hr />
+<hr/>
+<%= form_for @invoice, url: invoice_path do |f| %>
 
     <div class="form-group">
-      <label for="wasser" class="col-sm-2 control-label">Wasser</label>
+      <%= f.label :erdgas, 'Erdgaskosten', class: 'col-sm-2 control-label' %>
       <div class="input-group col-sm-4">
-        <input id="wasser" type="text" class="form-control">
+        <%= f.text_field :erdgas, class: 'form-control' %>
         <span class="input-group-addon">€</span>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="abwasser" class="col-sm-2 control-label">Abwasser</label>
+      <%= f.label :kamin, 'Kaminfeger', class: 'col-sm-2 control-label' %>
       <div class="input-group col-sm-4">
-        <input id="abwasser" type="text" class="form-control">
-        <span class="input-group-addon">€</span>
-      </div>
-    </div>
-
-    <hr />
-
-    <div class="form-group">
-      <label for="niederschlagswasser" class="col-sm-2 control-label">Niederschlagswasser</label>
-      <div class="input-group col-sm-4">
-        <input id="niederschlagswasser" type="text" class="form-control">
+        <%= f.text_field :kamin, class: 'form-control' %>
         <span class="input-group-addon">€</span>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="abfallgebühren" class="col-sm-2 control-label">Abfallgebühren</label>
+      <%= f.label :wartung, 'Wartungskosten', class: 'col-sm-2 control-label' %>
       <div class="input-group col-sm-4">
-        <input id="abfallgebühren" type="text" class="form-control">
+        <%= f.text_field :wartung, class: 'form-control' %>
         <span class="input-group-addon">€</span>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="garten" class="col-sm-2 control-label">Grundsteuer Garten</label>
+      <%= f.label :reinigung, 'Reinigungskosten', class: 'col-sm-2 control-label' %>
       <div class="input-group col-sm-4">
-        <input id="garten" type="text" class="form-control">
+        <%= f.text_field :reinigung, class: 'form-control' %>
+        <span class="input-group-addon">€</span>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group strompreis">
+      <%= f.label :strompreis, 'Strompreis', class: 'col-sm-2 control-label' %>
+      <div class="input-group col-sm-2">
+        <%= f.text_field :strompreis, class: 'form-control', placeholder: 'Gesamtpreis' %>
+        <span class="input-group-addon">€</span>
+      </div>
+      <div class="input-group col-sm-2">
+        <%= f.text_field :stromverbrauch, class: 'form-control', placeholder: 'Gesamtverbrauch' %>
         <span class="input-group-addon">€</span>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="versicherung" class="col-sm-2 control-label">Versicherung</label>
-      <div class="input-group col-sm-4">
-        <input id="versicherung" type="text" class="form-control">
+      <%= f.label :gesamt_strom, 'Strompreis (brutto)', class: 'col-sm-2 control-label' %>
+      <div class="input-group col-sm-2">
+        <%= f.text_field :gesamt_strom, class: 'form-control', readonly: true %> <!-- Gesamtpreis / Gesamtverbrauch -->
         <span class="input-group-addon">€</span>
       </div>
+
+      <hr/>
+
+      <div class="form-group">
+        <%= f.label :wasser, 'Wasser', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :wasser, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :abwasser, 'Abwasser', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :abwasser, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="form-group">
+        <%= f.label :niederschlag, 'Niederschlagswasser', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :niederschlag, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :abfall, 'Abfallgebühren', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :abfall, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :grundsteuer, 'Grundsteuer Garten', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :grundsteuer, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :versicherung, 'Versicherung', class: 'col-sm-2 control-label' %>
+        <div class="input-group col-sm-4">
+          <%= f.text_field :versicherung, class: 'form-control' %>
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+
+      <%= f.submit 'Speichern', class: 'btn btn-primary' %>
     </div>
-  </div>
-</form>
+<% end %>
