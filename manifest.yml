@@ -1,7 +1,7 @@
 ---
 applications:
-- name: nka_rails
-  host: nka_rails
+- name: nka-rails
+  host: nka-rails
   instances: 1
   services:
     - nka_test
