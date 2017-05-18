@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :residents
 
   get 'expenses', to: 'invoices#edit'
 
   resources :invoices
+  # resources :users
+
   # resources :invoice_details
 
   root 'invoices#index'

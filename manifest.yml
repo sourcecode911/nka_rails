@@ -8,5 +8,4 @@ applications:
   env:
     RAILS_ENV: production
   buildpack: ruby_buildpack
-
 ...

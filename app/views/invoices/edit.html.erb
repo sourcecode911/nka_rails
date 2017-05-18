@@ -1,42 +1,17 @@
 <h3>Betriebskosten</h3>
+
 <% if notice %>
-  <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
 <% end %>
 
 <hr/>
+
 <%= form_for @invoice, url: invoice_path do |f| %>
 
-    <div class="form-group">
-      <%= f.label :erdgas, 'Erdgaskosten', class: 'col-sm-2 control-label' %>
-      <div class="input-group col-sm-4">
-        <%= f.text_field :erdgas, class: 'form-control' %>
-        <span class="input-group-addon">€</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :kamin, 'Kaminfeger', class: 'col-sm-2 control-label' %>
-      <div class="input-group col-sm-4">
-        <%= f.text_field :kamin, class: 'form-control' %>
-        <span class="input-group-addon">€</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :wartung, 'Wartungskosten', class: 'col-sm-2 control-label' %>
-      <div class="input-group col-sm-4">
-        <%= f.text_field :wartung, class: 'form-control' %>
-        <span class="input-group-addon">€</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :reinigung, 'Reinigungskosten', class: 'col-sm-2 control-label' %>
-      <div class="input-group col-sm-4">
-        <%= f.text_field :reinigung, class: 'form-control' %>
-        <span class="input-group-addon">€</span>
-      </div>
-    </div>
+    <%= react_component('PriceInput', {label: 'Erdgaskosten', model: 'invoice', attr: 'erdgas', value: @invoice.erdgas}) %>
+    <%= react_component('PriceInput', {label: 'Kaminfeger', model: 'invoice', attr: 'kamin', value: @invoice.kamin}) %>
+    <%= react_component('PriceInput', {label: 'Wartungskosten', model: 'invoice', attr: 'wartung', value: @invoice.wartung}) %>
+    <%= react_component('PriceInput', {label: 'Reinigungskosten', model: 'invoice', attr: 'renigung', value: @invoice.reinigung}) %>
 
     <hr/>
 
@@ -58,59 +33,20 @@
         <%= f.text_field :gesamt_strom, class: 'form-control', readonly: true %> <!-- Gesamtpreis / Gesamtverbrauch -->
         <span class="input-group-addon">€</span>
       </div>
-
-      <hr/>
-
-      <div class="form-group">
-        <%= f.label :wasser, 'Wasser', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :wasser, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :abwasser, 'Abwasser', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :abwasser, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <hr/>
-
-      <div class="form-group">
-        <%= f.label :niederschlag, 'Niederschlagswasser', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :niederschlag, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :abfall, 'Abfallgebühren', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :abfall, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :grundsteuer, 'Grundsteuer Garten', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :grundsteuer, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :versicherung, 'Versicherung', class: 'col-sm-2 control-label' %>
-        <div class="input-group col-sm-4">
-          <%= f.text_field :versicherung, class: 'form-control' %>
-          <span class="input-group-addon">€</span>
-        </div>
-      </div>
-
-      <%= f.submit 'Speichern', class: 'btn btn-primary' %>
     </div>
+
+    <hr/>
+
+    <%= react_component('PriceInput', {label: 'Wasser', model: 'invoice', attr: 'wasser', value: @invoice.wasser}) %>
+    <%= react_component('PriceInput', {label: 'Abwasser', model: 'invoice', attr: 'abwasser', value: @invoice.abwasser}) %>
+
+    <hr/>
+
+    <%= react_component('PriceInput', {label: 'Niederschlagswasser', model: 'invoice', attr: 'niederschlag', value: @invoice.niederschlag}) %>
+    <%= react_component('PriceInput', {label: 'Abfallgebühren', model: 'invoice', attr: 'abfall', value: @invoice.abfall}) %>
+    <%= react_component('PriceInput', {label: 'Grundsteuer Garten', model: 'invoice', attr: 'grundsteuer', value: @invoice.grundsteuer}) %>
+    <%= react_component('PriceInput', {label: 'Versicherung', model: 'invoice', attr: 'versicherung', value: @invoice.versicherung}) %>
+
+    <%= f.submit 'Speichern', class: 'btn btn-primary' %>
+
 <% end %>
