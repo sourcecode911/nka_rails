@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170526111655) do
     t.integer "meter_id", null: false
     t.decimal "amount", null: false
     t.date "date", null: false
-    t.integer "state", default: 1, null: false
+    t.integer "state", default:  1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170526111655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "expense_type"
+    t.integer "user_id"
   end
 
   create_table "residents", force: :cascade do |t|

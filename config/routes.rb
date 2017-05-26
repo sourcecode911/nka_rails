@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :invoices, only: [:index, :create, :update]
   get 'expenses', to: 'invoices#expenses'
 
+  resources :counts, only: [:index]
+
   resources :flats
   resources :residents
   resources :users, only: [:update]

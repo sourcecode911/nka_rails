@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authorize
     return true unless Rails.env.production?
     authenticate_or_request_with_http_basic do |user, password|
-      (user == 'rawtalent' && password == 'admin0815')
+      (user == 'nka' && password == 'nka-test')
     end
   end
 end
