@@ -19,14 +19,10 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def edit
-    @invoice = Invoice.find(params[:id])
-  end
-
   def expenses
     @invoice = Invoice.find(current_user.current_invoice_id)
     if @invoice
-      render 'edit'
+      render 'expenses'
       # redirect_to edit_invoice_path(@invoice.id)
     else
       redirect_to invoices_path, alert: 'Bitte selektieren Sie zuerst eine Rechnung.'
@@ -39,7 +35,7 @@ class InvoicesController < ApplicationController
     if @invoice.update(invoice_params)
       redirect_to expenses_path, notice: 'Die Abrechnung wurde gespeichert.'
     else
-      render 'edit'
+      render 'expenses'
     end
 
   end
