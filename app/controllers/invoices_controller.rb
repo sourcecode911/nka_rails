@@ -20,10 +20,9 @@ class InvoicesController < ApplicationController
   end
 
   def expenses
-    @invoice = Invoice.find(current_user.current_invoice_id)
-    if @invoice
+    if current_user.current_invoice_id
+      @invoice = Invoice.find(current_user.current_invoice_id)
       render 'expenses'
-      # redirect_to edit_invoice_path(@invoice.id)
     else
       redirect_to invoices_path, alert: 'Bitte selektieren Sie zuerst eine Rechnung.'
     end
