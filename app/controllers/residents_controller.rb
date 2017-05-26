@@ -63,12 +63,10 @@ class ResidentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_resident
       @resident = Resident.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def resident_params
       params.require(:resident).permit(:name, :move_in, :move_out, :flat_id)
     end

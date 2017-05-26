@@ -1,0 +1,37 @@
+<%= form_with(model: flat, local: true, class: 'col-md-4') do |form| %>
+    <% if flat.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(flat.errors.count, "error") %> prohibited this flat from being saved:</h2>
+
+          <ul>
+            <% flat.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :area, 'Fläche' %>
+      <div class="input-group col-md-12">
+        <%= form.number_field :area, class: 'form-control' %>
+        <span class="input-group-addon">m²</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :tax, 'Steuer' %>
+      <%= form.number_field :tax, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :ownership, 'Eigentumsanteil' %>
+      <%= form.number_field :ownership, class: 'form-control' %>
+    </div>
+
+    <%= form.submit class: 'btn btn-primary' %>
+<% end %>

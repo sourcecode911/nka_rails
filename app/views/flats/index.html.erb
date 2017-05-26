@@ -1,0 +1,39 @@
+<h3>Wohnungen</h3>
+
+<% if notice %>
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
+<hr />
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fläche</th>
+      <th>Steuer</th>
+      <th>Eigentumsanteil</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @flats.each do |flat| %>
+        <tr>
+          <td><%= flat.name %></td>
+          <td><%= flat.area %></td>
+          <td><%= flat.tax %></td>
+          <td><%= flat.ownership %></td>
+          <td><%= link_to 'Anzeigen', flat %></td>
+          <td><%= link_to 'Bearbeiten', edit_flat_path(flat) %></td>
+          <td><%= link_to 'Löschen', flat, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'Neue Wohnung erstellen', new_flat_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523155411) do
+ActiveRecord::Schema.define(version: 20170526095057) do
 
   create_table "counts", force: :cascade do |t|
     t.integer "meter_id", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20170523155411) do
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "user_id"
   end
 
   create_table "invoice_details", force: :cascade do |t|
