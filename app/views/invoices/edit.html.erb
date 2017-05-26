@@ -6,7 +6,7 @@
 
 <hr/>
 
-<%= form_for @invoice, url: invoice_path do |f| %>
+<%= form_for @invoice do |f| %>
 
     <%= react_component('PriceInput', {label: 'Erdgaskosten', model: 'invoice', attr: 'erdgas', value: @invoice.erdgas}) %>
     <%= react_component('PriceInput', {label: 'Kaminfeger', model: 'invoice', attr: 'kamin', value: @invoice.kamin}) %>

@@ -39,3 +39,16 @@ function httpPost(url, data, callback) {
         }
     })
 }
+
+function httpPut(url, data, callback) {
+    $.ajax({
+        url: url,
+        type: 'PUT',
+        data: data,
+        success: function(resp) {
+            if(callback) {
+                callback(resp);
+            }
+        }
+    })
+}
