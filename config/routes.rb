@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :flats
   resources :residents
   resources :users, only: [:update]
+  resources :meters
 
   # resources :invoice_details
 

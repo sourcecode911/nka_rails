@@ -1,0 +1,30 @@
+<%= form_with(model: meter, local: true, class: 'col-md-4') do |form| %>
+  <% if meter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meter.errors.count, "error") %> prohibited this meter from being saved:</h2>
+
+      <ul>
+      <% meter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, 'Name' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+      <%= form.label :flat_id, 'Wohnung' %>
+      <%= form.text_field :flat_id, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :expense_type, 'Kostentyp' %>
+      <%= form.text_field :expense_type, class: 'form-control' %>
+    </div>
+
+  <%= form.submit 'Speichern' %>
+<% end %>
