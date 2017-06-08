@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "meters/index", type: :view do
+RSpec.describe "meters/counts", type: :view do
   before(:each) do
     assign(:meters, [
       Meter.create!(),

@@ -10,25 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526111655) do
+ActiveRecord::Schema.define(version: 20170608120703) do
 
   create_table "counts", force: :cascade do |t|
-    t.integer "meter_id", null: false
+    t.integer "flat_id", null: false
     t.decimal "amount", null: false
     t.date "date", null: false
-    t.integer "state", default:  1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "expenses", force: :cascade do |t|
-    t.string "name"
-    t.integer "invoice_id", null: false
-    t.decimal "amount", null: false
-    t.integer "cost_type", null: false
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "invoice_id"
+    t.integer "strom"
+    t.integer "kaltwasser"
+    t.integer "warmwasser"
+    t.integer "heizung"
+    t.integer "gas"
   end
 
   create_table "flats", force: :cascade do |t|
@@ -62,8 +58,7 @@ ActiveRecord::Schema.define(version: 20170526111655) do
     t.decimal "kamin"
     t.decimal "wartung"
     t.decimal "reinigung"
-    t.decimal "strompreis"
-    t.decimal "stromverbrauch"
+    t.decimal "strom"
     t.decimal "gesamt_strom"
     t.decimal "wasser"
     t.decimal "abwasser"

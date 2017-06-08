@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe ResidentsController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
+    it "routes to #counts" do
       expect(:get => "/residents").to route_to("residents#index")
     end
 

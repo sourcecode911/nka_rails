@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :invoices, only: [:index, :create, :update]
-  get 'expenses', to: 'invoices#expenses'
 
-  resources :counts, only: [:index]
+  get 'expenses', to: 'invoices#expenses'
+  get 'counts', to: 'invoices#counts'
 
   resources :flats
   resources :residents
@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   # resources :invoice_details
 
-  root 'invoices#index'
+  root 'invoices#counts'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

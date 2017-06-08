@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       (user == 'nka' && password == 'nka-test')
     end
   end
+
+  def current_user
+    super
+  end
 end

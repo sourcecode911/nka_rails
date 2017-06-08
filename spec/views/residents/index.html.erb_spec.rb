@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "residents/index", type: :view do
+RSpec.describe "residents/counts", type: :view do
   before(:each) do
     assign(:residents, [
       Resident.create!(),

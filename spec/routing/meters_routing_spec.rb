@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe MetersController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
+    it "routes to #counts" do
       expect(:get => "/meters").to route_to("meters#index")
     end
 

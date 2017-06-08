@@ -1,5 +1,5 @@
 class CountsController < ApplicationController
-  def index
+  def counts
     if current_user.current_invoice_id
 
     else

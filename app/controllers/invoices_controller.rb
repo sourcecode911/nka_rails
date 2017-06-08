@@ -28,6 +28,17 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def counts
+    if current_user.current_invoice_id
+      @invoice = Invoice.find(current_user.current_invoice_id)
+      @flats = Flat.where(user_id: current_user.id)
+
+      render 'counts'
+    else
+      redirect_to invoices_path, alert: 'Bitte seleketieren Sie zuerst eine Rechnung.'
+    end
+  end
+
   def update
     @invoice = Invoice.find(params[:id])
 

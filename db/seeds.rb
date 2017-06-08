@@ -9,4 +9,4 @@
 
 Invoice.delete_all
 User.delete_all
-User.create(username: "cedosw", email: "cedric@oswaldonline.info", password: "admin0815")
+User.create(username: 'cedosw', email: 'cedric@oswaldonline.info', password: 'admin0815')

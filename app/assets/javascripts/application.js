@@ -33,7 +33,7 @@ function httpPost(url, data, callback) {
         data: data,
         success: function(resp) {
             if(callback) {
-                console.log('success')
+                console.log('success');
                 callback(resp);
             }
         }

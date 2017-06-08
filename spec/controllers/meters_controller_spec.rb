@@ -41,10 +41,10 @@ RSpec.describe MetersController, type: :controller do
   # MetersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
+  describe "GET #counts" do
     it "returns a success response" do
       meter = Meter.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :counts, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
