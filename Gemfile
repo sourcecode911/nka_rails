@@ -67,6 +67,8 @@ group :development, :test do
   # Cleans the database before each test
   gem 'database_cleaner'
 
+  gem 'rails-erd'
+
   # Automatically runs tests on file change
   gem 'guard'
   gem 'guard-rspec'

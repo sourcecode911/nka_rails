@@ -31,8 +31,7 @@ class InvoicesController < ApplicationController
   def counts
     if current_user.current_invoice_id
       @invoice = Invoice.find(current_user.current_invoice_id)
-      @flats = Flat.where(user_id: current_user.id)
-
+      @flats = @invoice.flats
       render 'counts'
     else
       redirect_to invoices_path, alert: 'Bitte seleketieren Sie zuerst eine Rechnung.'

@@ -3,15 +3,19 @@
 
     <hr/>
 
-    <% @flats.each do |flat| %>
+    <%= f.fields_for :flats do |flat| %>
+
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= flat.name %></h3>
+            <h3 class="panel-title"><%= flat.object.name %></h3>
           </div>
 
           <div class="panel-body">
-            <div class="form-group">
-            </div>
+            <%= flat.fields_for :counts do |count| %>
+                <div class="form-group">
+
+                </div>
+            <% end %>
           </div>
         </div>
     <% end %>
