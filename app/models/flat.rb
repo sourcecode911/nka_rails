@@ -1,7 +1,6 @@
 class Flat < ApplicationRecord
   belongs_to :user
   has_many :residents
-  has_many :counts
 
-  accepts_nested_attributes_for :counts
+  scope :by_user, lambda { |user_id| where(user_id: user_id) }
 end

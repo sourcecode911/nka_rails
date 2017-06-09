@@ -18,13 +18,13 @@
 
     <div class="form-group">
       <%= form.label :flat_id, 'Wohnung' %>
-      <%= form.text_field :flat_id, class: 'form-control' %>
+      <%= form.collection_select :flat_id, Flat.by_user(current_user.id), :id, :name, {include_blank: true}, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= form.label :expense_type, 'Kostentyp' %>
-      <%= form.text_field :expense_type, class: 'form-control' %>
+      <%= form.select :expenses_type, Meter.expense_types.keys.map { |t| [t.humanize, t]}, {include_blank: true}, class: 'form-control' %>
     </div>
 
-  <%= form.submit 'Speichern' %>
+  <%= form.submit 'Speichern', class: 'btn btn-primary' %>
 <% end %>

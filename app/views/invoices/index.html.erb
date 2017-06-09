@@ -8,16 +8,16 @@
     <div id="alert" class="alert alert-danger" role="alert"><%= alert %></div>
 <% end %>
 
-<hr />
+<hr/>
 
 <%= react_component('Invoices', {items: @invoices, user_id: current_user.id, invoice_id: current_user.current_invoice_id}) %>
 <%#= react_component('NewInvoice',  {years: (2000...(Date.today.year + 2)).to_a.reverse}) %>
 
-<%= form_for Invoice.new, class: 'form-inline' do |f| %>
-  <div class="form-group">
-    <%= f.label :year, 'Jahr' %>
-    <%= f.select :year, (2000...(Date.today.year + 2)).to_a.reverse, class: 'form-control' %>
-  </div>
+<%= form_for Invoice.new, html: { class: 'form-inline col-sm-6' } do |f| %>
+    <div class="form-group">
+      <%= f.label :year, 'Jahr' %>
+      <%= f.select :year, (2000...(Date.today.year + 2)).to_a.reverse, {}, class: 'form-control' %>
+    </div>
 
     <%= f.submit 'Erstellen', class: 'btn btn-primary' %>
 <% end %>
