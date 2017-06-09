@@ -1,6 +1,6 @@
 class Invoice < ApplicationRecord
   has_many :invoice_details, dependent: :destroy
-  has_many :counts, through: :flats
+  has_many :counts
   belongs_to :user
   has_many :flats, through: :user
 

@@ -17,6 +17,7 @@ class MetersController < ApplicationController
 
   def create
     @meter = Meter.new(meter_params)
+    @meter.user_id = current_user.id
 
     respond_to do |format|
       if @meter.save
@@ -55,6 +56,6 @@ class MetersController < ApplicationController
     end
 
     def meter_params
-      params.require(:meter).permit(:name, :flat_id, :cost_type)
+      params.require(:meter).permit(:name, :flat_id, :expense_type)
     end
 end

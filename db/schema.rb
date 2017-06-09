@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608120703) do
+ActiveRecord::Schema.define(version: 20170609110233) do
 
   create_table "counts", force: :cascade do |t|
     t.integer "flat_id", null: false
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 20170608120703) do
     t.datetime "updated_at", null: false
     t.integer "expense_type"
     t.integer "user_id"
+    t.integer "meter_id"
+    t.index ["meter_id"], name: "index_meters_on_meter_id"
   end
 
   create_table "residents", force: :cascade do |t|
