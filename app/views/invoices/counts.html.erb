@@ -1,19 +1,28 @@
-<%= form_for @invoice, html: {class: 'form-horizontal'} do |f| %>
+<%= form_for @invoice, html: {class: 'form-horizontal'} do |i| %>
     <h3>Zählerstände</h3>
 
     <hr/>
 
-    <%= f.fields_for :flats do |flat| %>
+    <%= i.fields_for :flats do |f| %>
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= flat.object.name %></h3>
+            <h3 class="panel-title"><%= f.object.name %></h3>
           </div>
 
           <div class="panel-body">
-            <%= flat.fields_for :meters do |meter| %>
-              <%=  %>
-            <% end %>
+            <table>
+              <%= f.fields_for :meters do |m| %>
+                  <tr>
+                    <th><%= m.object.name %> <em><%= m.object.expense_type.humanize %></em></th>
+                    <%= m.fields_for :counts do |c| %>
+                        <td>
+                          <%= c.date_field :date %>
+                        </td>
+                    <% end %>
+                  </tr>
+              <% end %>
+            </table>
           </div>
         </div>
     <% end %>

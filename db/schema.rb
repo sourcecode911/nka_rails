@@ -10,21 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609110233) do
+ActiveRecord::Schema.define(version: 20170609122514) do
 
   create_table "counts", force: :cascade do |t|
-    t.integer "flat_id", null: false
     t.decimal "amount", null: false
     t.date "date", null: false
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
-    t.integer "strom"
-    t.integer "kaltwasser"
-    t.integer "warmwasser"
-    t.integer "heizung"
-    t.integer "gas"
+    t.integer "meter_id"
+    t.index ["meter_id"], name: "index_counts_on_meter_id"
   end
 
   create_table "flats", force: :cascade do |t|
@@ -58,7 +54,8 @@ ActiveRecord::Schema.define(version: 20170609110233) do
     t.decimal "kamin"
     t.decimal "wartung"
     t.decimal "reinigung"
-    t.decimal "strom"
+    t.decimal "strompreis"
+    t.decimal "stromverbrauch"
     t.decimal "gesamt_strom"
     t.decimal "wasser"
     t.decimal "abwasser"
