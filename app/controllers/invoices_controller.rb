@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:update, :finalize]
+  before_action :set_invoice, only: [:show, :update, :finalize]
 
   def index
     @invoices = Invoice.all
@@ -10,10 +10,14 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def create
     @invoice = Invoice.new(invoice_params)
-    @invoice.user_id = 1
-    @invoice.save
+    @invoice.user_id = current_user.id
+
+    @invoice.save!
 
     respond_to do |format|
       format.html { redirect_to invoices_path, notice: "Abrechnung für das Jahr #{@invoice.year} wurde erstellt." }
@@ -49,7 +53,9 @@ class InvoicesController < ApplicationController
 
   def finalize
     if @invoice.finalize
-      redirect_to
+      redirect_to invoice_path(@invoice), notice: "Das Jahr #{@invoice.year} wurde abgerechnet."
+    else
+      render 'index'
     end
   end
 

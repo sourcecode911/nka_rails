@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :invoices, only: [:index, :create, :update]
-
-  get 'expenses', to: 'invoices#expenses'
-  get 'counts', to: 'invoices#counts'
+  resources :invoices, only: [:index, :create, :update, :show] do
+    get 'expenses', on: :collection
+    get 'counts', on: :collection
+    get 'finalize', on: :member
+  end
+  resources :counts, only: :new
 
   resources :flats
   resources :residents
