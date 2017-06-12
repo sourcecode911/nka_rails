@@ -16,7 +16,7 @@
                     <%= f.fields_for :meters, meter do |m| %>
                         <div class="count-form">
                           <label><%= meter.name %> (<%= meter.expense_type.humanize %>)</label>
-                          <% meter.find_or_initialize_counts.each.with_index do |count, ci| %>
+                          <% meter.find_or_initialize_counts(@invoice.id).each.with_index do |count, ci| %>
                               <%= m.fields_for :counts, count do |c| %>
                                   <!--<div class="count-inputs">-->
                                   <!--<%#= c.date_field :date, class: 'form-control', placeholder: 'Datum' %>-->
@@ -27,7 +27,7 @@
                                   <%= react_component('CountInput', {invoiceId: @invoice.id, flatIndex: fi, meterIndex: mi, countIndex: ci, count: c.object}) %>
                               <% end %>
                           <% end %>
-                          <%= react_component('AddCount', {invoiceId: @invoice.id, flatIndex: fi, meterIndex: mi, countIndex: meter.counts.length}) %>
+                          <%= react_component('AddCount', {invoiceId: @invoice.id, flatIndex: fi, meterIndex: mi, countIndex: meter.counts.length, date: Date.new(@invoice.year,12,31)}) %>
                         </div>
                         <hr/>
                     <% end %>

@@ -7,7 +7,7 @@ class CountInput extends React.Component {
         this.countIndex = props.countIndex;
         this.count = props.count || {};
         this.state = {
-            [this.getInputName('date')]: this.count.date || '',
+            [this.getInputName('date')]: this.count.date || props.date || '',
             [this.getInputName('amount')]: this.count.amount || ''
         }
     }

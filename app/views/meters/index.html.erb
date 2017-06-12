@@ -17,7 +17,7 @@
       <% @meters.each do |meter| %>
         <tr>
           <td><%= meter.name %></td>
-          <td><%= meter.flat_id %></td>
+          <td><%= meter.flat.name %></td>
           <td><%= meter.expense_type.humanize %></td>
           <td><%= link_to 'Anzeigen', meter %></td>
           <td><%= link_to 'Bearbeiten', edit_meter_path(meter) %></td>

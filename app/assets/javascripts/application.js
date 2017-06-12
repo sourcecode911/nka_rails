@@ -20,7 +20,7 @@
 
 function httpGet(url, callback) {
     $.getJSON(url, function(resp) {
-        if(callback) {
+        if(callback) {#
             callback(resp);
         }
     });

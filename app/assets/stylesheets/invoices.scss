@@ -35,3 +35,19 @@
 .panel-body > label {
   height: 100%;
 }
+
+tr.active > td {
+  background-color: #2465a7 !important;
+  color: white;
+
+  a {color: white;}
+}
+
+td.link {
+  color: #337ab7;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}

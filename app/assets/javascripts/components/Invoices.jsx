@@ -1,6 +1,7 @@
 class Invoices extends React.Component {
     constructor(props) {
         super();
+        this.url = props.url;
         this.state = {
             items: props.items,
             invoice_id: props.invoice_id
@@ -30,6 +31,7 @@ class Invoices extends React.Component {
                     <td>{item.id}</td>
                     <td>{item.year}</td>
                     <td className="link" onClick={() => {this.selectInvoice(item)}}>Selektieren</td>
+                    <td><a href={`${this.url}/${item.id}/finalize`}>Abrechnen</a></td>
                 </tr>
             )
         });
@@ -47,5 +49,6 @@ class Invoices extends React.Component {
 Invoices.propTypes = {
     user_id: React.PropTypes.number,
     invoice_id: React.PropTypes.number,
-    items: React.PropTypes.array
+    items: React.PropTypes.array,
+    url: React.PropTypes.string
 }
