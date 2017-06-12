@@ -1,4 +1,6 @@
 class InvoicesController < ApplicationController
+  before_action :set_invoice, only: [:update, :finalize]
+
   def index
     @invoices = Invoice.all
 
@@ -38,20 +40,30 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    @invoice = Invoice.find(params[:id])
-
     if @invoice.update(invoice_params)
-      redirect_to expenses_path, notice: 'Die Abrechnung wurde gespeichert.'
+      redirect_to expenses_invoices_path, notice: 'Die Abrechnung wurde gespeichert.'
     else
       render 'expenses'
     end
+  end
 
+  def finalize
+    if @invoice.finalize
+      redirect_to
+    end
   end
 
 
   private
-    def invoice_params
-      params.require(:invoice).permit(:year, :erdgas, :wartung, :kamin, :reinigung, :strompreis, :stromverbrauch, :gesamt_strom,
-                                      :wasser, :abwasser, :niederschlag, :abfall, :grundsteuer, :versichung)
+    def set_invoice
+      @invoice = Invoice.find(params[:id])
     end
+
+    def invoice_params
+      params.require(:invoice).permit( :year, :erdgas, :wartung, :kamin, :reinigung, :strompreis, :stromverbrauch, :gesamt_strom,
+                                      :wasser, :abwasser, :niederschlag, :abfall, :grundsteuer, :versichung,
+                                      flats_attributes: [ :id, meters_attributes: [ :id, counts_attributes: [ :id, :date, :amount, :meter_id, :invoice_id]] ])
+    end
+
+
 end

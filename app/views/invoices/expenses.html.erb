@@ -1,7 +1,7 @@
 <h3>Betriebskosten</h3>
 
 <% if notice %>
-    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>5
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
 <% end %>
 
 <hr/>
@@ -16,14 +16,14 @@
     <hr/>
 
     <div class="form-group strompreis">
-      <%= f.label :strom, 'Strompreis', class: 'col-sm-2 control-label' %>
+      <%= f.label :strompreis, 'Strompreis', class: 'col-sm-2 control-label' %>
       <div class="input-group col-sm-4">
-        <%= f.text_field :strom, class: 'form-control', placeholder: 'Gesamtpreis' %>
+        <%= f.text_field :strompreis, class: 'form-control', placeholder: 'Gesamtpreis' %>
         <span class="input-group-addon">€</span>
       </div>
 
       <div class="input-group col-sm-4">
-        <%= f.text_field :strom, class: 'form-control', placeholder: 'Gesamtverbrauch' %>
+        <%= f.text_field :stromverbrauch, class: 'form-control', placeholder: 'Gesamtverbrauch' %>
         <span class="input-group-addon">€</span>
       </div>
     </div>

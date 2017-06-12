@@ -1,162 +1,41 @@
-<%= form_for @invoice, html: {class: 'form-horizontal'} do |i| %>
-    <h3>Zählerstände</h3>
+<h3>Zählerstände</h3>
 
-    <hr/>
+<hr/>
 
-    <%= i.fields_for :flats do |f| %>
+<%= form_for @invoice, html: {class: 'form-inline'} do |i| %>
+    <% @invoice.flats.each.with_index do |flat, fi| %>
+        <%= i.fields_for :flats, flat do |f| %>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= f.object.name %></h3>
-          </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= flat.name %></h3>
+              </div>
 
-          <div class="panel-body">
-            <table>
-              <%= f.fields_for :meters do |m| %>
-                  <tr>
-                    <th><%= m.object.name %> <em><%= m.object.expense_type.humanize %></em></th>
-                    <%= m.fields_for :counts do |c| %>
-                        <td>
-                          <%= c.date_field :date %>
-                        </td>
+              <div class="panel-body">
+                <% flat.meters.each.with_index do |meter, mi| %>
+                    <%= f.fields_for :meters, meter do |m| %>
+                        <div class="count-form">
+                          <label><%= meter.name %> (<%= meter.expense_type.humanize %>)</label>
+                          <% meter.find_or_initialize_counts.each.with_index do |count, ci| %>
+                              <%= m.fields_for :counts, count do |c| %>
+                                  <!--<div class="count-inputs">-->
+                                  <!--<%#= c.date_field :date, class: 'form-control', placeholder: 'Datum' %>-->
+                                  <!--<%#= c.text_field :amount, class: 'form-control', placeholder: 'Messwert' %>-->
+                                  <!--<%#= c.hidden_field :meter_id, value: m.object.id %>-->
+                                  <!--<%#= c.hidden_field :invoice_id, value: i.object.id %>-->
+                                  <!--</div>-->
+                                  <%= react_component('CountInput', {invoiceId: @invoice.id, flatIndex: fi, meterIndex: mi, countIndex: ci, count: c.object}) %>
+                              <% end %>
+                          <% end %>
+                          <%= react_component('AddCount', {invoiceId: @invoice.id, flatIndex: fi, meterIndex: mi, countIndex: meter.counts.length}) %>
+                        </div>
+                        <hr/>
                     <% end %>
-                  </tr>
-              <% end %>
-            </table>
-          </div>
-        </div>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
     <% end %>
+
+    <%= i.submit 'Speichern', class: 'btn btn-primary' %>
 <% end %>
-
-<!-- div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Kaltwasser</h3>
-  </div>
-
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Hauptzähler</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Alt">
-        <span class="input-group-addon">m³</span>
-      </div>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Neu">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wohnung 1</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wohnung 2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Gesamt" readonly>
-        <span class="input-group-addon">m³</span>
-      </div>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Heizkeller">
-        <span class="input-group-addon">m³</span>
-      </div>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Ölkeller">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Garage Wohnung 2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Warmwasser</h3>
-  </div>
-
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wohnung 1 DG</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Alt">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wohnung 1 OG</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wohnung 2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">m³</span>
-      </div>
-      <label class="col-sm-2 control-label">Wohnung 2.2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Heizungsanlage</h3>
-  </div>
-
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Gaszähler</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control" placeholder="Alt">
-        <span class="input-group-addon">m³</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Allgemeinstrom</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">kW</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wärmezähler Wasser</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">kWh</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wärmezähler W1</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">kWh</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Wärmezähler W2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">kWh</span>
-      </div>
-      <label class="col-sm-2 control-label">Wärmezähler W2.2</label>
-      <div class="col-sm-2 input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-addon">kWh</span>
-      </div>
-    </div>
-  </div>
-</div -->

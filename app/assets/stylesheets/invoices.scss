@@ -1,3 +1,37 @@
 // Place all the styles related to the Invoices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.count-form {
+  display: flex;
+
+  label {
+    line-height: 88px;
+    margin-bottom: 0;
+    width: 200px;
+    max-width: 200px;
+  }
+
+  .count-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    width: 200px !important;
+    margin: 5px 10px;
+  }
+}
+
+.addCount {
+  display: flex;
+}
+
+.addCountButton {
+  line-height: 88px;
+}
+
+.panel-body > label {
+  height: 100%;
+}
