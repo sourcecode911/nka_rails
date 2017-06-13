@@ -37,7 +37,32 @@ class Invoice < ApplicationRecord
     return (warmwasser_kosten * warmwasser_anteil)
   end
 
+  def abfallkosten(flat)
+    total_residents = flats.sum {|f| f.residents.length}
+    share = flat.residents.length / total_residents
+    return (abfall * share)
+  end
+
+  def versicherungskosten(flat)
+    total_space = flats.sum {|f| f[:area]}
+    share = (flat.area / total_space)
+    return (versicherung * share)
+  end
+
+  def grundsteuerkosten(flat)
+    share = flat.ownership / 100
+    return (grundsteuer * share)
+  end
+
+  def niederschlagskosten
+    return (niederschlag / flats.length)
+  end
+
+  def strom_share
+    return (gesamt_strom / flats.length)
+  end
+
   def gesamt_heizkosten
-    erdgas + kamin + wartung + reinigung
+    erdgas + kamin + wartung + reinigung + strom_share
   end
 end
