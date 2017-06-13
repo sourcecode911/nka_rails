@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613082547) do
+ActiveRecord::Schema.define(version: 20170613093034) do
 
   create_table "counts", force: :cascade do |t|
     t.decimal "amount", null: false
@@ -38,10 +38,17 @@ ActiveRecord::Schema.define(version: 20170613082547) do
     t.integer "invoice_id", null: false
     t.integer "expense_id", null: false
     t.integer "resident_id", null: false
-    t.decimal "amount"
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "kaltwasser"
+    t.decimal "warmwasser"
+    t.decimal "heizung"
+    t.decimal "strom"
+    t.decimal "abfall"
+    t.decimal "versicherung"
+    t.decimal "steuer"
+    t.decimal "niederschlag"
   end
 
   create_table "invoices", force: :cascade do |t|

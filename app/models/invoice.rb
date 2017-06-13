@@ -12,12 +12,18 @@ class Invoice < ApplicationRecord
 
   def finalize
     flats.each do |f|
-      detail = InvoiceDetail.new
+      detail = invoice_details.build
       detail.resident_id = f.residents.first.id
-      detail.invoice_id = id
-      detail.amount = 0
-      detail.amount += wasserkosten(f)
+      detail.kaltwasser = wasserkosten(f)
+      detail.warmwasser = warmwasserkosten(f)
+      detail.abfall = abfallkosten(f)
+      detail.heizung = heizungskosten(f)
+      detail.versicherung = versicherungskosten(f)
+      detail.steuer = grundsteuerkosten(f)
+      detail.strom = stromkosten
     end
+
+    save
   end
 
   def wasserkosten(flat)
@@ -58,11 +64,11 @@ class Invoice < ApplicationRecord
     return (niederschlag / flats.length)
   end
 
-  def strom_share
+  def stromkosten
     return (gesamt_strom / flats.length)
   end
 
   def gesamt_heizkosten
-    erdgas + kamin + wartung + reinigung + strom_share
+    erdgas + kamin + wartung + reinigung + gesamt_strom
   end
 end

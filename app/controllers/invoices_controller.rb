@@ -67,7 +67,7 @@ class InvoicesController < ApplicationController
 
     def invoice_params
       params.require(:invoice).permit( :year, :erdgas, :wartung, :kamin, :reinigung, :strompreis, :stromverbrauch, :gesamt_strom,
-                                      :wasser, :abwasser, :niederschlag, :abfall, :grundsteuer, :versichung,
+                                      :wasser, :abwasser, :niederschlag, :abfall, :grundsteuer, :versicherung,
                                       flats_attributes: [ :id, meters_attributes: [ :id, counts_attributes: [ :id, :date, :amount, :meter_id, :invoice_id]] ])
     end
 
