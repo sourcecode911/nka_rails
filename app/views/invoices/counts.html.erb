@@ -1,5 +1,9 @@
 <h3>Zählerstände</h3>
 
+<% if notice %>
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
 <hr/>
 
 <%= form_for @invoice, html: {class: 'form-inline'} do |i| %>

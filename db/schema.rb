@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609122514) do
+ActiveRecord::Schema.define(version: 20170613082547) do
 
   create_table "counts", force: :cascade do |t|
     t.decimal "amount", null: false
@@ -54,8 +54,6 @@ ActiveRecord::Schema.define(version: 20170609122514) do
     t.decimal "kamin"
     t.decimal "wartung"
     t.decimal "reinigung"
-    t.decimal "strompreis"
-    t.decimal "stromverbrauch"
     t.decimal "gesamt_strom"
     t.decimal "wasser"
     t.decimal "abwasser"
