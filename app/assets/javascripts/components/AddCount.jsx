@@ -5,7 +5,7 @@ class AddCount extends React.Component {
         this.flatIndex = props.flatIndex;
         this.meterIndex = props.meterIndex;
         this.countIndex = props.countIndex;
-        this.date = props.date;
+        this.defaultDate = props.defaultDate;
         this.state = {
             numCounts: 0
         }
@@ -21,7 +21,7 @@ class AddCount extends React.Component {
 
         for (var i = 0; i < this.state.numCounts; i += 1) {
             counts.push(<CountInput key={i} flatIndex={this.flatIndex} meterIndex={this.meterIndex}
-                                    countIndex={(this.countIndex - 1) + this.state.numCounts} invoiceId={this.invoiceId} date={this.date} />);
+                                    countIndex={(this.countIndex - 1) + this.state.numCounts} invoiceId={this.invoiceId} defaultDate={this.defaultDate} />);
         }
 
         return (
@@ -41,5 +41,6 @@ AddCount.PropTypes = {
     invoiceId: React.PropTypes.number,
     flatIndex: React.PropTypes.number,
     meterIndex: React.PropTypes.number,
-    countIndex: React.PropTypes.number
+    countIndex: React.PropTypes.number,
+    defaultDate: React.PropTypes.number
 }
