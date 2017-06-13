@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170613093034) do
 
   create_table "invoice_details", force: :cascade do |t|
     t.integer "invoice_id", null: false
-    t.integer "expense_id", null: false
     t.integer "resident_id", null: false
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false

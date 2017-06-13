@@ -28,44 +28,44 @@ class Invoice < ApplicationRecord
 
   def wasserkosten(flat)
     wasser_anteil = Meter.get_share(self, flat, 0)
-    return (wasser_anteil * wasser)
+    return (wasser_anteil * wasser).round(2)
   end
 
   def heizungskosten(flat)
     heizkosten = gesamt_heizkosten * Meter.heizungs_share(id)
     heizung_anteil = Meter.get_share(self, flat, 2)
-    return (heizkosten * heizung_anteil)
+    return (heizkosten * heizung_anteil).round(2)
   end
 
   def warmwasserkosten(flat)
     warmwasser_kosten = gesamt_heizkosten * Meter.warmwasser_share(id)
     warmwasser_anteil = Meter.get_share(self, flat, 1)
-    return (warmwasser_kosten * warmwasser_anteil)
+    return (warmwasser_kosten * warmwasser_anteil).round(2)
   end
 
   def abfallkosten(flat)
     total_residents = flats.sum {|f| f.residents.length}
     share = flat.residents.length / total_residents
-    return (abfall * share)
+    return (abfall * share).round(2)
   end
 
   def versicherungskosten(flat)
     total_space = flats.sum {|f| f[:area]}
     share = (flat.area / total_space)
-    return (versicherung * share)
+    return (versicherung * share).round(2)
   end
 
   def grundsteuerkosten(flat)
     share = flat.ownership / 100
-    return (grundsteuer * share)
+    return (grundsteuer * share).round(2)
   end
 
   def niederschlagskosten
-    return (niederschlag / flats.length)
+    return (niederschlag / flats.length).round(2)
   end
 
   def stromkosten
-    return (gesamt_strom / flats.length)
+    return (gesamt_strom / flats.length).round(2)
   end
 
   def gesamt_heizkosten

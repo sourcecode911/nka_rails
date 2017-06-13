@@ -6,13 +6,47 @@
 
 <hr />
 
-<% @invoice.flats.each do |flat| %>
+<% @invoice.invoice_details.each do |detail| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= flat.residents.first.name %></h3>
+        <h3 class="panel-title"><%= detail.resident.name %></h3>
       </div>
 
       <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge"><%= detail.kaltwasser %> €</span>
+            Kaltwasser
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.warmwasser %> €</span>
+            Warmwasser
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.heizung %> €</span>
+            Heizung
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.strom %> €</span>
+            Strom
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.abfall %> €</span>
+            Abfall
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.versicherung %> €</span>
+            Versicherung
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.steuer %> €</span>
+            Grundsteuer
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%= detail.niederschlag %> €</span>
+            Niederschlag
+          </li>
+        </ul>
       </div>
     </div>
 <% end %>

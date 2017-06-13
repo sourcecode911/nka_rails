@@ -13,4 +13,5 @@ class AddFieldsToInvoiceDetails < ActiveRecord::Migration[5.1]
   end
 
   remove_column :invoice_details, :amount
+  remove_column :invoice_details, :expense_id
 end
