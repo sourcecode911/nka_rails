@@ -32,7 +32,7 @@ class Invoice < ApplicationRecord
   end
 
   def heizungskosten(flat)
-    heizkosten = gesamt_heizkosten * Meter.heizungs_share(id)
+    heizkosten = gesamt_heizkosten * Meter.heizungs_share(self)
     heizung_anteil = Meter.get_share(self, flat, 2)
     return (heizkosten * heizung_anteil).round(2)
   end

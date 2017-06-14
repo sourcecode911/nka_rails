@@ -9,17 +9,20 @@ class Meter < ApplicationRecord
 
   accepts_nested_attributes_for :counts
 
-  def self.get_count_sum(expense_type, invoice_id)
-    Meter.where(expense_type: expense_type).sum {|m| m.counts.where(invoice_id: invoice_id).sum {|c| c[:amount]}}
+  def self.get_count_sum(expense_type, invoice)
+    Meter.where(expense_type: expense_type).sum {|m| m.counts.where(invoice_id: invoice.id).sum {|c| c[:amount]}}
   end
 
-  def self.get_flat_count_sum(expense_type, invoice_id, flat_id)
-    Meter.where(expense_type: expense_type, flat_id: flat_id).sum {|m| m.counts.where(invoice_id: invoice_id).sum {|c| c[:amount]}}
-end
+  def self.get_flat_count_sum(expense_type, invoice, flat_id)
+    prev_invoice_id = Invoice.where(year: (invoice.year - 1))
+    old_sum = Meter.where(expense_type: expense_type, flat_id: flat_id).sum {|m| m.counts.where(invoice_id: prev_invoice_id).sum {|c| c[:amount]}}
+    new_sum = Meter.where(expense_type: expense_type, flat_id: flat_id).sum {|m| m.counts.where(invoice_id: invoice.id).sum {|c| c[:amount]}}
+    return (new_sum - old_sum)
+  end
 
   def self.get_share(invoice, flat, expense_type)
-    gesamt_verbrauch = Meter.get_count_sum(expense_type, invoice.id)
-    verbrauch = Meter.get_flat_count_sum(expense_type, invoice.id, flat.id)
+    gesamt_verbrauch = Meter.get_count_sum(expense_type, invoice)
+    verbrauch = Meter.get_flat_count_sum(expense_type, invoice, flat.id)
     return (verbrauch/gesamt_verbrauch)
   end
 
@@ -30,15 +33,15 @@ end
     counts.where(invoice_id: invoice_id)
   end
 
-  def self.warmwasser_share(invoice_id)
-    gesamt = Meter.get_count_sum(:heizung, invoice_id) + Meter.get_count_sum(:warmwasser_gesamt, invoice_id)
-    warmwasser = Meter.get_count_sum(:warmwasser_gesamt, invoice_id);
+  def self.warmwasser_share(invoice)
+    gesamt = Meter.get_count_sum(:heizung, invoice) + Meter.get_count_sum(:warmwasser_gesamt, invoice)
+    warmwasser = Meter.get_count_sum(:warmwasser_gesamt, invoice);
     return (warmwasser/gesamt)
   end
 
-  def self.heizungs_share(invoice_id)
-    gesamt = Meter.get_count_sum(:heizung, invoice_id) + Meter.get_count_sum(:warmwasser_gesamt, invoice_id)
-    heizung = Meter.get_count_sum(:heizung, invoice_id);
+  def self.heizungs_share(invoice)
+    gesamt = Meter.get_count_sum(:heizung, invoice) + Meter.get_count_sum(:warmwasser_gesamt, invoice)
+    heizung = Meter.get_count_sum(:heizung, invoice);
     return (heizung/gesamt)
   end
 end
