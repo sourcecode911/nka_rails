@@ -17,7 +17,7 @@ class MetersController < ApplicationController
 
   def create
     @meter = Meter.new(meter_params)
-    @meter.user_id = current_user.id
+    #@meter.user_id=current_user.id
 
     respond_to do |format|
       if @meter.save
