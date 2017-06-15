@@ -27,6 +27,11 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :initial_count, 'Initialer Zählerstand' %>
+      <%= form.text_field :initial_count, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
       <%= form.label :parent, 'Überzähler' %>
       <%= form.collection_select :parent, Meter.all, :id, :name, {include_blank: true}, class: 'form-control' %>
     </div>

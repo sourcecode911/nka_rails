@@ -2,7 +2,7 @@ class MetersController < ApplicationController
   before_action :set_meter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @meters = Meter.all
+    @meters = Meter.where(user_id: current_user.id)
   end
 
   def show
@@ -17,7 +17,7 @@ class MetersController < ApplicationController
 
   def create
     @meter = Meter.new(meter_params)
-    #@meter.user_id=current_user.id
+    @meter.user_id = current_user.id
 
     respond_to do |format|
       if @meter.save
@@ -56,6 +56,6 @@ class MetersController < ApplicationController
     end
 
     def meter_params
-      params.require(:meter).permit(:name, :flat_id, :expense_type)
+      params.require(:meter).permit(:name, :flat_id, :expense_type, :initial_count)
     end
 end
