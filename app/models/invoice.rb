@@ -10,7 +10,19 @@ class Invoice < ApplicationRecord
 
   accepts_nested_attributes_for :flats
 
+  def invoice_valid?
+    errors.add('Betriebskosten', 'müssen ausgefüllt sein') unless (wasser || gesamt_strom || abfall || versicherung ||
+        grundsteuer || reinigung || niederschlag || kamin || abwasser || wartung || erdgas)
+
+    !errors.any?
+  end
+
+
   def finalize
+    unless invoice_valid?
+      return false
+    end
+
     flats.each do |f|
       detail = invoice_details.build
       detail.resident_id = f.residents.first.id

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613093034) do
+ActiveRecord::Schema.define(version: 20170615105335) do
 
   create_table "counts", force: :cascade do |t|
     t.decimal "amount", null: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20170613093034) do
     t.integer "expense_type"
     t.integer "user_id"
     t.integer "meter_id"
+    t.decimal "initial_count"
     t.index ["meter_id"], name: "index_meters_on_meter_id"
   end
 
@@ -89,6 +90,8 @@ ActiveRecord::Schema.define(version: 20170613093034) do
     t.integer "state", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_residents_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

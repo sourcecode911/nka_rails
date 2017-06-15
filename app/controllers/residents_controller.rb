@@ -4,7 +4,7 @@ class ResidentsController < ApplicationController
   # GET /residents
   # GET /residents.json
   def index
-    @residents = Resident.all
+    @residents = Resident.where(user_id: current_user.id)
   end
 
   # GET /residents/1

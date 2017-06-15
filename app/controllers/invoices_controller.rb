@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :update, :finalize]
 
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html { render 'index' }
@@ -55,6 +55,7 @@ class InvoicesController < ApplicationController
     if @invoice.finalize
       redirect_to invoice_path(@invoice), notice: "Das Jahr #{@invoice.year} wurde abgerechnet."
     else
+      @invoices = Invoice.where(user_id: current_user.id)
       render 'index'
     end
   end

@@ -1,5 +1,18 @@
 <h3>Abrechnungen</h3>
 
+<% if @invoice && @invoice.errors.any? %>
+    <div id="notice" class="alert alert-danger" role="alert">
+      <h4>Die Abrechnung kann nicht abgerechnet werden:</h4>
+
+      <ul>
+        <% @invoice.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+
 <% if notice %>
     <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
 <% end %>
