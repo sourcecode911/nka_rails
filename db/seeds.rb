@@ -10,4 +10,4 @@
 Invoice.delete_all
 User.delete_all
 User.create(username: 'Cedric Oswald', email: 'cedric@oswaldonline.info', password: 'admin0815')
-User.create(username: 'Sabine Oswald', email: 'sabine@oswaldonline.info', password: 'vds12%z6z/&hn!')
+User.create(username: 'Sabine Oswald', email: 'sabine@oswaldonline.de', password: 'vds12%z6z/&hn!')
