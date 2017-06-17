@@ -25,7 +25,7 @@ class ResidentsController < ApplicationController
   # POST /residents.json
   def create
     @resident = Resident.new(resident_params)
-    @resident.flat_id = 1
+    @resident.user_id = current_user.id
 
     respond_to do |format|
       if @resident.save
