@@ -50,7 +50,7 @@ class Invoice < ApplicationRecord
   end
 
   def warmwasserkosten(flat)
-    warmwasser_kosten = gesamt_heizkosten * Meter.warmwasser_share(id)
+    warmwasser_kosten = gesamt_heizkosten * Meter.warmwasser_share(self)
     warmwasser_anteil = Meter.get_share(self, flat, 1)
     return (warmwasser_kosten * warmwasser_anteil).round(2)
   end
