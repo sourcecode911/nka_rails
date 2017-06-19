@@ -14,6 +14,7 @@ class Invoices extends React.Component {
                 <th>#</th>
                 <th>Jahr</th>
                 <th />
+                <th />
             </tr>
         )
     }
@@ -31,6 +32,7 @@ class Invoices extends React.Component {
                     <td>{item.id}</td>
                     <td>{item.year}</td>
                     <td className="link" onClick={() => {this.selectInvoice(item)}}>Selektieren</td>
+                    <td><a href={`${this.url}/${item.id}`}>Anzeigen</a></td>
                     <td><a href={`${this.url}/${item.id}/finalize`}>Abrechnen</a></td>
                 </tr>
             )

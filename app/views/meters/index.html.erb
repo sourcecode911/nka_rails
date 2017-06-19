@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h3>Zähler</h3>
+
+<% if notice %>
+    <div id="notice" class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
 
 <div class="table-responsive">
   <table class="table table-striped table-hover">
@@ -9,6 +11,7 @@
         <th>Name</th>
         <th>Wohnung</th>
         <th>Kostentyp</th>
+        <th>Initialer Stand</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -17,8 +20,9 @@
       <% @meters.each do |meter| %>
         <tr>
           <td><%= meter.name %></td>
-          <td><%= meter.flat.name %></td>
+          <td><%= meter.flat.name unless meter.flat.nil? %></td>
           <td><%= meter.expense_type.humanize %></td>
+          <td><%= meter.initial_count %></td>
           <td><%= link_to 'Bearbeiten', edit_meter_path(meter) %></td>
           <td><%= link_to 'Löschen', meter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

@@ -9,8 +9,11 @@
   label {
     line-height: 88px;
     margin-bottom: 0;
-    width: 200px;
-    max-width: 200px;
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .count-inputs {

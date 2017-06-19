@@ -19,20 +19,22 @@ class Invoice < ApplicationRecord
 
 
   def finalize
-    unless invoice_valid?
-      return false
-    end
+    # unless invoice_valid?
+    #   return false
+    # end
+
+    invoice_details.delete_all
 
     flats.each do |f|
       detail = invoice_details.build
       detail.resident_id = f.residents.first.id
       detail.kaltwasser = wasserkosten(f)
       detail.warmwasser = warmwasserkosten(f)
-      detail.abfall = abfallkosten(f)
-      detail.heizung = heizungskosten(f)
-      detail.versicherung = versicherungskosten(f)
-      detail.steuer = grundsteuerkosten(f)
-      detail.strom = stromkosten
+      # detail.abfall = abfallkosten(f)
+      # detail.heizung = heizungskosten(f)
+      # detail.versicherung = versicherungskosten(f)
+      # detail.steuer = grundsteuerkosten(f)
+      # detail.strom = stromkosten
     end
 
     save
@@ -51,7 +53,7 @@ class Invoice < ApplicationRecord
 
   def warmwasserkosten(flat)
     warmwasser_kosten = gesamt_heizkosten * Meter.warmwasser_share(self)
-    warmwasser_anteil = Meter.get_share(self, flat, 1)
+    warmwasser_anteil = Meter.get_share(self, flat.id, 1)
     return (warmwasser_kosten * warmwasser_anteil).round(2)
   end
 
@@ -82,5 +84,9 @@ class Invoice < ApplicationRecord
 
   def gesamt_heizkosten
     erdgas + kamin + wartung + reinigung + gesamt_strom
+  end
+
+  def common_meters
+    Meter.where(flat_id: nil, user_id: user_id)
   end
 end
