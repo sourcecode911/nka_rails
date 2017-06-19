@@ -43,7 +43,7 @@ class Invoice < ApplicationRecord
 
   def wasserkosten(flat)
     wasser_anteil = Meter.get_share(self, flat, 0)
-    return (wasser_anteil * wasser).round(2)
+    return (wasser_anteil * (wasser + abwasser)).round(2)
   end
 
   def heizungskosten(flat)
