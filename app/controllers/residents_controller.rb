@@ -1,15 +1,10 @@
 class ResidentsController < ApplicationController
-  before_action :set_resident, only: [:show, :edit, :update, :destroy]
+  before_action :set_resident, only: [:edit, :update, :destroy]
 
   # GET /residents
   # GET /residents.json
   def index
     @residents = Resident.where(user_id: current_user.id)
-  end
-
-  # GET /residents/1
-  # GET /residents/1.json
-  def show
   end
 
   # GET /residents/new
@@ -29,8 +24,8 @@ class ResidentsController < ApplicationController
 
     respond_to do |format|
       if @resident.save
-        format.html { redirect_to @resident, notice: 'Resident was successfully created.' }
-        format.json { render :show, status: :created, location: @resident }
+        format.html { redirect_to residents_path, notice: 'Resident was successfully created.' }
+        format.json { render json: @resident, status: :created }
       else
         format.html { render :new }
         format.json { render json: @resident.errors, status: :unprocessable_entity }
@@ -43,8 +38,8 @@ class ResidentsController < ApplicationController
   def update
     respond_to do |format|
       if @resident.update(resident_params)
-        format.html { redirect_to @resident, notice: 'Resident was successfully updated.' }
-        format.json { render :show, status: :ok, location: @resident }
+        format.html { redirect_to residents_path, notice: 'Resident was successfully updated.' }
+        format.json { render json: @resident, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @resident.errors, status: :unprocessable_entity }

@@ -1,11 +1,8 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  before_action :set_flat, only: [:edit, :update, :destroy]
 
   def index
     @flats = Flat.where(user_id: current_user.id, state: 1)
-  end
-
-  def show
   end
 
   def new
@@ -21,8 +18,8 @@ class FlatsController < ApplicationController
 
     respond_to do |format|
       if @flat.save
-        format.html { redirect_to @flat, notice: 'Die Wohnung wurde erstellt.' }
-        format.json { render :show, status: :created, location: @flat }
+        format.html { redirect_to flats_path, notice: 'Die Wohnung wurde erstellt.' }
+        format.json { render json: @flat, status: :created }
       else
         format.html { render :new }
         format.json { render json: @flat.errors, status: :unprocessable_entity }
@@ -33,8 +30,8 @@ class FlatsController < ApplicationController
   def update
     respond_to do |format|
       if @flat.update(flat_params)
-        format.html { redirect_to @flat, notice: 'Die Wohnung wurde bearbeitet.' }
-        format.json { render :show, status: :ok, location: @flat }
+        format.html { redirect_to flats_path, notice: 'Die Wohnung wurde bearbeitet.' }
+        format.json { render json: @flat, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @flat.errors, status: :unprocessable_entity }

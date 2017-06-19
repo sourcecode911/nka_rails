@@ -1,11 +1,8 @@
 class MetersController < ApplicationController
-  before_action :set_meter, only: [:show, :edit, :update, :destroy]
+  before_action :set_meter, only: [:edit, :update, :destroy]
 
   def index
     @meters = Meter.where(user_id: current_user.id)
-  end
-
-  def show
   end
 
   def new
@@ -21,8 +18,8 @@ class MetersController < ApplicationController
 
     respond_to do |format|
       if @meter.save
-        format.html { redirect_to @meter, notice: 'Meter was successfully created.' }
-        format.json { render :show, status: :created, location: @meter }
+        format.html { redirect_to meters_path, notice: 'Meter was successfully created.' }
+        format.json { render json: @meter, status: :created }
       else
         format.html { render :new }
         format.json { render json: @meter.errors, status: :unprocessable_entity }
@@ -33,8 +30,8 @@ class MetersController < ApplicationController
   def update
     respond_to do |format|
       if @meter.update(meter_params)
-        format.html { redirect_to @meter, notice: 'Meter was successfully updated.' }
-        format.json { render :show, status: :ok, location: @meter }
+        format.html { redirect_to meters_path, notice: 'Meter was successfully updated.' }
+        format.json { render json: @meter, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @meter.errors, status: :unprocessable_entity }

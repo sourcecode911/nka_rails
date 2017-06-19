@@ -9,7 +9,7 @@
         <th>Name</th>
         <th>Wohnung</th>
         <th>Kostentyp</th>
-        <th colspan="3"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
@@ -19,7 +19,6 @@
           <td><%= meter.name %></td>
           <td><%= meter.flat.name %></td>
           <td><%= meter.expense_type.humanize %></td>
-          <td><%= link_to 'Anzeigen', meter %></td>
           <td><%= link_to 'Bearbeiten', edit_meter_path(meter) %></td>
           <td><%= link_to 'Löschen', meter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
