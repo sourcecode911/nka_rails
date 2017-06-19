@@ -18,7 +18,7 @@ class MetersController < ApplicationController
 
     respond_to do |format|
       if @meter.save
-        format.html { redirect_to meters_path, notice: 'Meter was successfully created.' }
+        format.html { redirect_to meters_path, notice: 'Der Zähler wurde erstellt.' }
         format.json { render json: @meter, status: :created }
       else
         format.html { render :new }
@@ -30,7 +30,7 @@ class MetersController < ApplicationController
   def update
     respond_to do |format|
       if @meter.update(meter_params)
-        format.html { redirect_to meters_path, notice: 'Meter was successfully updated.' }
+        format.html { redirect_to meters_path, notice: 'Der Zähler wurde aktualisiert.' }
         format.json { render json: @meter, status: :ok }
       else
         format.html { render :edit }
@@ -42,7 +42,7 @@ class MetersController < ApplicationController
   def destroy
     @meter.destroy
     respond_to do |format|
-      format.html { redirect_to meters_url, notice: 'Meter was successfully destroyed.' }
+      format.html { redirect_to meters_url, notice: 'Der Zähler wurde gelöscht.' }
       format.json { head :no_content }
     end
   end

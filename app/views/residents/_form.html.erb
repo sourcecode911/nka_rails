@@ -29,5 +29,5 @@
       <%= form.collection_select :flat_id, Flat.by_user(current_user.id), :id, :name, {include_blank: true}, class: 'form-control'  %>
     </div>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit 'Speichern', class: 'btn btn-primary' %>
 <% end %>

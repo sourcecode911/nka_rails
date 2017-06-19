@@ -24,7 +24,7 @@
           <td><%= resident.name %></td>
           <td><%= resident.move_in %></td>
           <td><%= resident.move_out %></td>
-          <td><%= resident.flat_id %></td>
+          <td><%= resident.flat.name %></td>
           <td><%= link_to 'Bearbeiten', edit_resident_path(resident) %></td>
           <td><%= link_to 'Löschen', resident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
