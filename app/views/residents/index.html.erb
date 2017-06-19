@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Anzahl Personen</th>
         <th>Einzug</th>
         <th>Auszug</th>
         <th>Wohnung</th>
@@ -22,6 +23,7 @@
       <% @residents.each do |resident| %>
         <tr>
           <td><%= resident.name %></td>
+          <td><%= resident.persons %></td>
           <td><%= resident.move_in %></td>
           <td><%= resident.move_out %></td>
           <td><%= resident.flat.name %></td>

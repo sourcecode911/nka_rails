@@ -17,6 +17,11 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :persons, 'Anzahl der Personen' %>
+      <%= form.text_field :persons, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
       <%= form.label :move_in, 'Einzugsdatum' %>
       <%= form.date_field :move_in, class: 'form-control' %>
     </div>

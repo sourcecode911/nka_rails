@@ -30,11 +30,12 @@ class Invoice < ApplicationRecord
       detail.resident_id = f.residents.first.id
       detail.kaltwasser = wasserkosten(f)
       detail.warmwasser = warmwasserkosten(f)
-      # detail.abfall = abfallkosten(f)
-      # detail.heizung = heizungskosten(f)
-      # detail.versicherung = versicherungskosten(f)
-      # detail.steuer = grundsteuerkosten(f)
-      # detail.strom = stromkosten
+      detail.abfall = abfallkosten(f)
+      detail.heizung = heizungskosten(f)
+      detail.versicherung = versicherungskosten(f)
+      detail.steuer = grundsteuerkosten(f)
+      detail.niederschlag = niederschlagskosten
+      detail.strom = stromkosten
     end
 
     save
@@ -58,32 +59,32 @@ class Invoice < ApplicationRecord
   end
 
   def abfallkosten(flat)
-    total_residents = flats.sum {|f| f.residents.length}
-    share = flat.residents.length / total_residents
+    total_residents = flats.sum {|f| f.residents.last.persons}
+    share = flat.residents.last.persons / total_residents.to_f
     return (abfall * share).round(2)
   end
 
   def versicherungskosten(flat)
     total_space = flats.sum {|f| f[:area]}
-    share = (flat.area / total_space)
+    share = (flat.area / total_space.to_f)
     return (versicherung * share).round(2)
   end
 
   def grundsteuerkosten(flat)
-    share = flat.ownership / 100
+    share = flat.ownership / 100.to_f
     return (grundsteuer * share).round(2)
   end
 
   def niederschlagskosten
-    return (niederschlag / flats.length).round(2)
+    return (niederschlag.to_f / flats.length).round(2)
   end
 
   def stromkosten
-    return (gesamt_strom / flats.length).round(2)
+    return (gesamt_strom.to_f / flats.length).round(2)
   end
 
   def gesamt_heizkosten
-    erdgas + kamin + wartung + reinigung + gesamt_strom
+    (erdgas + kamin + wartung + reinigung + gesamt_strom).to_f
   end
 
   def common_meters
