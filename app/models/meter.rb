@@ -57,13 +57,13 @@ class Meter < ApplicationRecord
 
   def self.warmwasser_share(invoice)
     gesamt = Meter.get_total_usage(:heizung, invoice) + Meter.get_total_usage(:warmwasser_gesamt, invoice)
-    warmwasser = Meter.get_total_usage(:warmwasser_gesamt, invoice);
+    warmwasser = Meter.get_total_usage(:warmwasser_gesamt, invoice)
     return (warmwasser/gesamt)
   end
 
   def self.heizungs_share(invoice)
     gesamt = Meter.get_total_usage(:heizung, invoice) + Meter.get_total_usage(:warmwasser_gesamt, invoice)
-    heizung = Meter.get_total_usage(:heizung, invoice);
+    heizung = Meter.get_total_usage(:heizung, invoice)
     return (heizung/gesamt)
   end
 end

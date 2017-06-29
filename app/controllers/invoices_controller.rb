@@ -63,6 +63,7 @@ class InvoicesController < ApplicationController
 
   private
     def set_invoice
+      # .preload(:user => {:flats => :meters}) nicht nötig, weil finalize eigene scopes der Klassen verwendet
       @invoice = Invoice.find(params[:id])
     end
 
