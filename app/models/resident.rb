@@ -3,8 +3,8 @@ class Resident < ApplicationRecord
   belongs_to :user
 
   scope :by_user, lambda { |user_id| where(user_id: user_id) }
-  scope :current, lambda { |user_id| by_user(user_id).where(move_out: nil) }
-  scope :of_year, lambda { |user_id, year| by_user(user_id).where("move_out >= ?", Date.new(year, 1, 1)).or(by_user(user_id).where(move_out: nil)) }
+  scope :current, lambda { where(move_out: nil) }
+  scope :of_year, lambda { |year| where("move_in <= ?", Date.new(year, 12, 31)).where("move_out >= ? OR move_out IS ?", Date.new(year, 1, 1), nil) }
 
 
   def year_share(year)
@@ -25,7 +25,6 @@ class Resident < ApplicationRecord
     else
       ende = move_out
     end
-    byebug
     
     return ((ende - start) / (leap?(year) ? 366 : 365).to_f)
   end

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170619110957) do
     t.decimal "kamin"
     t.decimal "wartung"
     t.decimal "reinigung"
+    t.decimal "strom"
     t.decimal "gesamt_strom"
     t.decimal "wasser"
     t.decimal "abwasser"
