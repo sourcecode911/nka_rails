@@ -8,6 +8,10 @@ class Resident < ApplicationRecord
   scope :current, lambda { where(move_out: nil) }
   scope :of_year, lambda { |year| where("move_in <= ?", Date.new(year, 12, 31)).where("move_out >= ? OR move_out IS ?", Date.new(year, 1, 1), nil) }
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def year_share(year)
     ((last_day(year) - first_day(year)) / (leap?(year) ? 366 : 365).to_f)
   end

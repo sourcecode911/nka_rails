@@ -12,8 +12,33 @@
     <% end %>
 
     <div class="form-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: 'form-control' %>
+      <%= form.label :last_name, 'Nachname' %>
+      <%= form.text_field :last_name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :first_name, 'Vorname' %>
+      <%= form.text_field :first_name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :street, 'Straße, Hausnummer' %>
+      <%= form.text_field :street, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :plz, 'Postleitzahl' %>
+      <%= form.number_field :plz, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :location, 'Ort' %>
+      <%= form.text_field :location, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, 'Email' %>
+      <%= form.text_field :email, class: 'form-control' %>
     </div>
 
     <div class="form-group">

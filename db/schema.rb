@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619110957) do
+ActiveRecord::Schema.define(version: 20170706122125) do
 
   create_table "counts", force: :cascade do |t|
     t.decimal "amount", null: false
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170619110957) do
   end
 
   create_table "residents", force: :cascade do |t|
-    t.string "name"
     t.date "move_in"
     t.date "move_out"
     t.integer "flat_id", null: false
@@ -93,6 +92,12 @@ ActiveRecord::Schema.define(version: 20170619110957) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "persons"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street"
+    t.integer "plz"
+    t.string "location"
+    t.string "email"
     t.index ["user_id"], name: "index_residents_on_user_id"
   end
 

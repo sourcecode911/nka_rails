@@ -63,6 +63,6 @@ class ResidentsController < ApplicationController
     end
 
     def resident_params
-      params.require(:resident).permit(:name, :move_in, :move_out, :flat_id, :persons)
+      params.require(:resident).permit(:first_name, :last_name, :move_in, :move_out, :flat_id, :persons, :street, :plz, :location, :email)
     end
 end
