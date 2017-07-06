@@ -64,7 +64,7 @@ class Invoice < ApplicationRecord
   end
 
   def abfallkosten(resident)
-    share = resident.persons / Resident.of_year(year).by_user(user_id).size
+    share = resident.persons.to_f / Resident.of_year(year).by_user(user_id).sum {|r| r[:persons]} 
     return (abfall * share).round(2)
   end
 
