@@ -131,4 +131,3 @@ class Invoice < ApplicationRecord
   def heizungs_share
     total_usage(2)/ (total_usage(2) + total_usage(5))
   end
-end
